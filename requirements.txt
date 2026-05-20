@@ -1,0 +1,13 @@
+fastapi
+fastapi[standard]
+uvicorn[standard]
+alembic
+sqlalchemy
+psycopg2-binary
+nba_api
+pandas
+python-dotenv
+requests
+numpy
+redis
+httpx

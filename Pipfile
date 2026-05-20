@@ -1,0 +1,25 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+alembic = "*"
+sqlalchemy = "*"
+psycopg2-binary = "*"
+nba-api = "*"
+pandas = "*"
+python-dotenv = "*"
+requests = "*"
+numpy = "*"
+redis = "*"
+httpx = "*"
+fastapi = {extras = ["standard"], version = "*"}
+uvicorn = {extras = ["standard"], version = "*"}
+pyjwt = "*"
+passlib = {extras = ["bcrypt"], version = "*"}
+
+[dev-packages]
+
+[requires]
+python_version = "3.12"
