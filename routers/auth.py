@@ -9,6 +9,7 @@ router = APIRouter(prefix="/auth", tags=["auth"])
 
 class UserCreate(BaseModel):
     email: EmailStr
+    username: str
     password: str
 
 class UserLogin(BaseModel):
@@ -98,16 +99,20 @@ def refresh(request: RefreshRequest, db: Session = Depends(get_db)):
         "user_id": user.id
     }
     access_token = jwt_service.create_access_token(data=new_payload)
-
+    refresh_token = jwt_service.create_refresh_token(data=new_payload)
+    
+    user.refresh_token = refresh_token
+    
     return {
         "access_token": access_token,
-        "refresh_token": user.refresh_token,
+        "refresh_token": refresh_token,
         "token_type": "bearer"
     }
 
 @router.post("/logout")
 def logout(request: RefreshRequest, db: Session = Depends(get_db)):
-    user = db.query(User).filter(User.refresh_token == request.refresh_token).first()
+    decoded = jwt_service.decode_token(request.refresh_token)
+    user = db.query(User).filter(User.refresh_token == request.refresh_token, User.id == decoded.get("user_id")).first()
     if not user:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,

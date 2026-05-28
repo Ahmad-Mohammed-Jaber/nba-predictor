@@ -4,7 +4,8 @@ from utils.redis_client import get_cached_data, set_cached_data
 from services.auth_service import get_current_user
 
 router = APIRouter(
-    prefix="/games"
+    prefix="/games",
+    tags=["games"]
 )
 
 CACHE_KEY_NEXT_3_DAYS = "nba_games_next_3_days"

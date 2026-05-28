@@ -30,7 +30,7 @@ ENV/
 .claude/
 
 # Project specific
-response-get-teams.json
+*.json
 *.db
 *.sqlite3
 

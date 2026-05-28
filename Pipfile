@@ -18,6 +18,7 @@ fastapi = {extras = ["standard"], version = "*"}
 uvicorn = {extras = ["standard"], version = "*"}
 pyjwt = "*"
 passlib = {extras = ["bcrypt"], version = "*"}
+bcrypt = "*"
 
 [dev-packages]
 
