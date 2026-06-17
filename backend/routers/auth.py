@@ -93,7 +93,7 @@ def login(user_in: UserLogin, response: Response, db: Session = Depends(get_db))
         key="refresh_token",
         value=refresh_token,
         httponly=True,
-        secure=True,
+        secure=False,
         samesite="lax",
         max_age=jwt_service.refresh_token_expire_days * 24 * 60 * 60
     )
@@ -142,7 +142,7 @@ def refresh(response: Response, refresh_token: Optional[str] = Cookie(None), db:
         key="refresh_token",
         value=new_refresh_token,
         httponly=True,
-        secure=True,
+        secure=False,
         samesite="lax",
         max_age=jwt_service.refresh_token_expire_days * 24 * 60 * 60
     )
@@ -190,5 +190,8 @@ def get_me(current_user_payload: dict = Depends(get_current_user), db: Session =
             detail="User not found"
         )
 
-    return user
+    return {
+        'email': user.email,
+        'username': user.username
+    }
 
