@@ -29,7 +29,7 @@ async def get_cached_data(key: str) -> Any | None:
 async def set_cached_data(
     key: str,
     value: Any,
-    ttl: int = 900
+    ttl: int = 10
 ):
     try:
         await redis_client.setex(

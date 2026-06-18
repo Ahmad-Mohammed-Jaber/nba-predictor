@@ -15,7 +15,7 @@ async def get_games_for_next_3_days() -> List[Dict[str, Any]]:
         raise ValueError("BDL_API_KEY not found in environment variables")
 
     # Calculate dates for today and the next 2 days
-    today = date.today()
+    today = date.today() - timedelta(days=100)
     dates = [(today + timedelta(days=i)).isoformat() for i in range(3)]
 
     headers = {"Authorization": BDL_API_KEY}
