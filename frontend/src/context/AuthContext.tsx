@@ -1,6 +1,7 @@
 /* eslint-disable react-refresh/only-export-components */
 import { createContext, useEffect, useReducer } from "react";
 import api, { setAccessToken } from "../configs/api.config";
+import LoadingSpinner from "../components/ui/LoadingSpinner";
 
 interface User {
   id: string;
@@ -112,7 +113,7 @@ export const AuthContextProvider = ({ children }: { children: React.ReactNode })
   console.log(state.accessToken)
   return (
     <AuthContext.Provider value={{ state, dispatch }}>
-      {state.isLoading ? <div>Loading...</div> : children}
+      {state.isLoading ? <LoadingSpinner /> : children}
     </AuthContext.Provider>
   );
 };

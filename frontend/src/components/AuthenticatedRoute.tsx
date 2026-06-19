@@ -1,12 +1,13 @@
 import { Navigate, Outlet } from "react-router";
 import { useAuthContext } from "../hooks/useAuthContext";
 import NavBar from "./NavBar";
+import LoadingSpinner from "./ui/LoadingSpinner";
 
 const AuthenticatedRoute = () => {
   const { state } = useAuthContext();
 
   if (state.isLoading) {
-    return <div>Loading...</div>;
+    return <LoadingSpinner />;
   }
   if (state.accessToken === null) {
     return <Navigate to={"/login"} replace />;
