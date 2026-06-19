@@ -12,19 +12,22 @@ import SignupPage from './pages/auth/SignupPage.tsx';
 import Teams from './pages/teams/Teams.tsx';
 
 import AuthenticatedRoute from './components/AuthenticatedRoute.tsx';
+import PageManager from './components/PageManager.tsx';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <AuthContextProvider>
       <BrowserRouter>
-        <Routes>
-          <Route element={<AuthenticatedRoute/>}>
-            <Route index element={<Home />} />
-            <Route path='/teams' element={<Teams />}/>
-          </Route>
-          <Route path='/login' element={<LoginPage />}/>
-          <Route path='/signup' element={<SignupPage />}/>
-        </Routes>
+        <PageManager>
+          <Routes>
+            <Route element={<AuthenticatedRoute/>}>
+              <Route index element={<Home />} />
+              <Route path='/teams' element={<Teams />}/>
+            </Route>
+            <Route path='/login' element={<LoginPage />}/>
+            <Route path='/signup' element={<SignupPage />}/>
+          </Routes>
+        </PageManager>
       </BrowserRouter>
     </AuthContextProvider>
   </StrictMode>
