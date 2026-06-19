@@ -16,15 +16,15 @@ interface TeamCardProps {
 const TeamCard = ({ team, onToggleFavorite }: TeamCardProps) => {
   return (
     <div className="bg-white p-4 rounded-xl shadow-sm border border-gray-200 flex items-center gap-4 hover:shadow-md transition-all">
-      <div className="flex-shrink-0 w-16 h-16 flex items-center justify-center bg-gray-100 rounded-full overflow-hidden">
+      <div className="shrink-0 w-16 h-16 flex items-center justify-center">
         {team.team_logo ? (
-          <img src={team.team_logo} alt={team.abbreviation} className="w-full h-full object-scale-down" />
+          <img src={team.team_logo} alt={team.abbreviation} className="w-full h-full object-fill" />
         ) : (
-          <span className="text-gray-400 font-bold">{team.abbreviation}</span>
+          <span className="bg-gray-100 p-5 text-gray-400 font-bold rounded-full ">{team.abbreviation}</span>
         )}
       </div>
 
-      <div className="flex-grow">
+      <div className="grow">
         <h3 className="font-bold text-gray-800 leading-tight">{team.name}</h3>
         <p className="text-xs text-gray-500">{team.division} | {team.conference}</p>
       </div>

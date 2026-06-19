@@ -1,0 +1,16 @@
+a.navlink {
+    color: white;
+}
+
+a.navlink:hover {
+    color: var(--color-gray-400);
+}
+
+a.navlink:active {
+    color: var(--color-gray-500)
+}
+
+a.active {
+    font-weight: bold;
+    text-decoration: underline;
+}

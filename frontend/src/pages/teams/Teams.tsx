@@ -1,4 +1,3 @@
-import React from "react";
 import useTeams from "../../hooks/useTeams";
 import useFavorites from "../../hooks/useFavorites";
 
@@ -30,7 +29,7 @@ const Teams = () => {
       {isLoading ? (
         <LoadingSpinner />
       ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        <div className="grid sm:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
           {sortedTeams.map((team) => (
             <TeamCard key={team.id} team={team} onToggleFavorite={async () => await toggleFavorite(team.id)} />
           ))}

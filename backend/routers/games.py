@@ -33,20 +33,20 @@ async def get_games(current_user: dict = Depends(get_current_user), db: Session 
             raise HTTPException(status_code=500, detail=f"Error fetching games: {str(e)}")
 
     # 4. Fetch all teams from DB to map logos efficiently
-    teams_stmt = select(Team.nba_api_id, Team.team_logo)
-    teams_result = db.execute(teams_stmt).all()
-    logo_map = {row.nba_api_id: row.team_logo for row in teams_result}
+    teams_stmt = select(Team.id, Team.team_logo)
+    logos_rows = db.execute(teams_stmt).mappings().all()
+    logo_map = {row["id"]: row["team_logo"] for row in logos_rows}
 
     return [
         {
             "game_id": game.get("id"),
             "home_team": {
                 **game.get("home_team", {}),
-                "logo": logo_map.get(str(game.get("home_team", {}).get("id")))
+                "logo": logo_map.get(game.get("home_team", {}).get("id")),
             },
             "visitor_team": {
                 **game.get("visitor_team", {}),
-                "logo": logo_map.get(str(game.get("visitor_team", {}).get("id")))
+                "logo": logo_map.get(game.get("visitor_team", {}).get("id")),
             },
             "date": game.get("date"),
         }
